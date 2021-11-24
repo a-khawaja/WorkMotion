@@ -1,6 +1,5 @@
 package com.Flink.weathershopper.pages;
 
-import com.Flink.weathershopper.HomePage;
 import com.Flink.weathershopper.PageBase;
 import com.Flink.weathershopper.ProductsPage;
 import org.openqa.selenium.By;
@@ -35,6 +34,7 @@ public class CheckoutPage extends PageBase {
 
     public boolean verifyCartData() {
 
+        waitForElementTobeClickable(PAY_WITH_CARD);
         boolean correctProducts = false;
 
         List<String> cartList = new ArrayList<String>();
@@ -55,6 +55,8 @@ public class CheckoutPage extends PageBase {
         if(listFromProductSelection.equals(cartList)){
             correctProducts = true;
         };
+
+        listFromProductSelection.clear();
 
         return correctProducts;
     }
@@ -84,7 +86,7 @@ public class CheckoutPage extends PageBase {
         WebElement exp1 = driver.findElement(By.id("cc-exp"));
         Assert.assertTrue(exp1.isDisplayed());
         click(exp1);
-        //js.executeScript("arguments[0].click()",exp1);
+
         js.executeScript("arguments[1].value = arguments[0]; ", expMth, exp1);
 
         driver.findElement(By.id("cc-csc")).sendKeys(CVC);

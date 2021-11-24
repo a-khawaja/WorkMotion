@@ -34,8 +34,8 @@ public class Hooks_UI {
     public static PageContainer container;
     public static WebDriver driver;
 
-    public String browser = "chrome";
-    //public String browser;
+    //public String browser = "chrome";
+    public String browser;
 
 
     @Before
@@ -45,7 +45,7 @@ public class Hooks_UI {
         scenarioName = scenario.getName();
         log.info("==================> Started executing the test - " + scenarioName + " <==================");
 
-        //browser = getProperty("browser");
+        browser = getProperty("browser");
 
         GetConfig.updateProperties("browser", browser);
         GetConfig.updateProperties("ScenarioName", scenarioName);

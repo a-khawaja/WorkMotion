@@ -6,13 +6,11 @@ import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import java.awt.*;
-import java.awt.datatransfer.StringSelection;
-import java.awt.event.KeyEvent;
+
 
 
 /**
- * @author avinash patel
+ * @author Hassan Amjad
  */
 public class PageBase {
 
@@ -272,27 +270,6 @@ public class PageBase {
         log.info("Page is loaded completely");
     }
 
-
-    /**
-     * Method to upload a file using ROBOT class
-     *
-     * @param file Path of the file to be uploaded
-     * @throws AWTException
-     */
-    public void uploadFile(String file) throws AWTException {
-        StringSelection filename = new StringSelection(file);
-        Toolkit.getDefaultToolkit().getSystemClipboard().setContents(filename, null);
-        Robot robot = new Robot();
-        robot.delay(250);
-        robot.keyPress(KeyEvent.VK_ENTER);
-        robot.keyRelease(KeyEvent.VK_ENTER);
-        robot.keyPress(KeyEvent.VK_CONTROL);
-        robot.keyPress(KeyEvent.VK_V);
-        robot.keyRelease(KeyEvent.VK_CONTROL);
-        robot.delay(1000);
-        robot.keyPress(KeyEvent.VK_ENTER);
-    }
-
     /**
      * Method to sleep for desired time
      *
@@ -305,25 +282,5 @@ public class PageBase {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-    }
-
-    public void waitForDropDownToBePresent(java.util.List<WebElement> element) {
-        log.info("Executing waitForDropDownToBePresent command on the element" + element);
-        WebDriverWait w = new WebDriverWait(driver, 60);
-        try {
-            log.info("Waiting for the element:" + element + " to be visible");
-            int dropdownSize = -1;
-            do {
-                Thread.sleep(2000);
-                dropdownSize = element.size();
-            } while (dropdownSize < 0);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-
-    public void hoverOverElement(WebElement parent) {
-        log.info("Executing hoverOverElement command");
-        actions.moveToElement(parent).perform();
     }
 }
