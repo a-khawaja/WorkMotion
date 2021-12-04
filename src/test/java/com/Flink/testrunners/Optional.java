@@ -10,13 +10,13 @@ import org.testng.annotations.Test;
 @CucumberOptions
         (features = {"src/test/resources"},
                 glue = "com/Flink/stepdefs",
-                tags = {"@MoisturizerPurchasing"},
+                tags = {"@OptionalFields"},
                 plugin = {"pretty", "html:target/cucumber-reports/cucumber-pretty",
                         "json:TestReport/cucumber-reports/CucumberTestReport.json",
                         "rerun:TestReport/cucumber-reports/rerun.txt"}
         )
 
-public class readerMode {
+public class Optional {
 
     private TestNGCucumberRunner testRunner;
 
@@ -25,7 +25,7 @@ public class readerMode {
         testRunner = new TestNGCucumberRunner(this.getClass());
     }
 
-    @Test(description = "Flink test", dataProvider = "features")
+    @Test(description = "WorkMotion", dataProvider = "features")
     public void test(PickleEventWrapper pickleEvent, CucumberFeatureWrapper cFeature) throws Throwable {
         testRunner.runScenario(pickleEvent.getPickleEvent());
     }

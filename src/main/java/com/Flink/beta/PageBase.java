@@ -1,4 +1,4 @@
-package com.Flink.weathershopper;
+package com.Flink.beta;
 
 import org.apache.log4j.Logger;
 import org.openqa.selenium.*;
@@ -6,7 +6,6 @@ import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-
 
 
 /**
@@ -74,28 +73,6 @@ public class PageBase {
     }
 
     /**
-     * Method to click on an element(click Element) and wait for other element
-     * (wait Element).
-     *
-     * @param clickElement - WebElement to be clicked
-     * @param waitElement  - WebElement to wait for after clicking
-     */
-    public void clickAndWait(WebElement clickElement, WebElement waitElement) {
-        log.info("Executing CLICK command on the element: " + clickElement);
-        try {
-            clickElement.click();
-            log.info("Waiting for the element: " + waitElement + " to be clickable");
-            WebDriverWait wait = new WebDriverWait(driver, 90);
-            wait.until(ExpectedConditions.elementToBeClickable(waitElement));
-        } catch (ElementClickInterceptedException e) {
-            jsclick(clickElement);
-            log.info("Waiting again for the element: " + waitElement + " to be clickable");
-            WebDriverWait wait = new WebDriverWait(driver, 90);
-            wait.until(ExpectedConditions.elementToBeClickable(waitElement));
-        }
-    }
-
-    /**
      * Method to verify whether the element is present or not.
      *
      * @param element - WebElement to be check whether present or not.
@@ -112,36 +89,6 @@ public class PageBase {
             return false;
         }
         return present;
-    }
-
-    /**
-     * Method to get text from the WebElement
-     *
-     * @param element - WebElement from which the text is to be fetched.
-     * @return - Text, if present. - Null, if not present
-     */
-    public String getText(WebElement element) {
-        log.info("Executing getText command on the element: " + element);
-        try {
-            return element.getText();
-        } catch (NoSuchElementException e) {
-            return null;
-        }
-    }
-
-    /**
-     * Method to get the tool tip message from the top left group of the widget
-     *
-     * @param element Which element to be tool tipped
-     * @return Text of the tool tipped web element
-     */
-    public String getToolTipTextForViewerTopLeftRoot(WebElement element) {
-        log.info("Executing getToolTipTextForViewerTopLeftRoot command on the element: " + element);
-        try {
-            return element.getAttribute("data-content");
-        } catch (NoSuchElementException e) {
-            return null;
-        }
     }
 
     /**
@@ -206,7 +153,6 @@ public class PageBase {
         executor.executeScript("arguments[0].click();", element);
     }
 
-
     /**
      * Method to check if the element is selected/displayed or not.
      *
@@ -239,7 +185,6 @@ public class PageBase {
         }
     }
 
-
     /**
      * Method to check if the text is present or not.
      *
@@ -254,7 +199,6 @@ public class PageBase {
         wait.until(ExpectedConditions.textToBePresentInElement(waitElement, textToAppear));
         return isElementPresent(waitElement);
     }
-
 
     /**
      * Method which waits for the complete page to load
@@ -283,4 +227,5 @@ public class PageBase {
             e.printStackTrace();
         }
     }
+
 }

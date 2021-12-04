@@ -1,6 +1,6 @@
 package com.Flink.stepdefs;
 
-import com.Flink.weathershopper.PageContainer;
+import com.Flink.beta.PageContainer;
 import com.Flink.utilities.GetConfig;
 import io.cucumber.core.api.Scenario;
 import io.cucumber.java.After;
@@ -16,7 +16,6 @@ import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
-import org.openqa.selenium.edge.EdgeOptions;
 import org.openqa.selenium.firefox.FirefoxOptions;
 
 import java.io.File;
@@ -69,7 +68,7 @@ public class Hooks_UI {
         } else if (platform.toLowerCase().contains("mac")) {
             macDriverSetup();
         } else if (platform.toLowerCase().contains("lin")) {
-            firefoxDriverSetup();
+            LinuxDriverSetup();
         }
         container = new PageContainer(driver);
     }
@@ -97,7 +96,7 @@ public class Hooks_UI {
             driver = WebDriverManager.chromedriver().capabilities(win_Options).create();
         } else if (browser.equalsIgnoreCase("firefox")) {
             FirefoxOptions win_Options = new FirefoxOptions();
-//                win_Options.setExperimentalOption("prefs", prefsMap);
+            //win_Options.setExperimentalOption("prefs", prefsMap);
             win_Options.addArguments("window-size=1920x1080");
 
             win_Options.addArguments("--disable-gpu");
@@ -119,21 +118,21 @@ public class Hooks_UI {
             mac_options.setExperimentalOption("prefs", prefsMap);
             mac_options.addArguments("test-type");
             mac_options.addArguments("--kiosk");
-//            mac_options.addArguments("--headless");
+            //mac_options.addArguments("--headless");
             mac_options.addArguments("acceptSslCerts=true");
             mac_options.addArguments("acceptInsecureCerts=true");
             System.out.println("Running on Mac Operating System with " + browser + " browser");
             driver = WebDriverManager.chromedriver().capabilities(mac_options).create();
         } else if (browser.equalsIgnoreCase("firefox")) {
             FirefoxOptions mac_options = new FirefoxOptions();
-//                mac_options.setExperimentalOption("prefs", prefsMap);
+            //mac_options.setExperimentalOption("prefs", prefsMap);
             mac_options.addArguments("test-type");
             System.out.println("Running on Mac Operating System with " + browser + " browser");
             driver = WebDriverManager.firefoxdriver().capabilities(mac_options).create();
         }
     }
 
-    private void firefoxDriverSetup() {
+    private void LinuxDriverSetup() {
         Map<String, Object> prefsMap = new HashMap<String, Object>();
         prefsMap.put("profile.default_content_settings.popups", 0);
         prefsMap.put("download.prompt_for_download", false);

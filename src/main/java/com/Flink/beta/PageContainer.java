@@ -1,14 +1,14 @@
-package com.Flink.weathershopper;
+package com.Flink.beta;
 
-import com.Flink.weathershopper.pages.CheckoutPage;
+import com.Flink.beta.pages.ActionItemsPage;
 import org.openqa.selenium.WebDriver;
 
 public class PageContainer {
 
     public WebDriver driver;
     public HomePage homePage;
-    public ProductsPage productsPage;
-    public CheckoutPage checkoutPage;
+    public AddEmployeePage addEmployeePage;
+    public ActionItemsPage actionItemsPage;
 
 
     /**
@@ -26,8 +26,8 @@ public class PageContainer {
      */
     public void initPages() {
         homePage = new HomePage(driver);
-        productsPage = new ProductsPage(driver);
-        checkoutPage = new CheckoutPage(driver);
+        addEmployeePage = new AddEmployeePage(driver);
+        actionItemsPage = new ActionItemsPage(driver);
     }
 
 }
