@@ -16,7 +16,7 @@ Eclipse/IntelliJ
 
 
 1. Checkout the code in your local using: 
-    **<Git hub repo is shared via email>**
+    **https://github.com/a-khawaja/WorkMotion.git**
 2. Once checked out, import the project as "maven project" in eclipse/STS/IntelliJ
 3. Once import is successfully, you can run pom.xml
 4. In order to run demo E2E tests suite files or feature-wise suite file(s) for a particular component manually.
